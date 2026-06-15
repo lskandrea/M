@@ -1,176 +1,150 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MJSC Judo Manosque — Club de judo</title>
-  <meta name="description" content="Club de judo à Manosque : cours enfants, ados, adultes, valeurs du judo, inscriptions, calendrier, actualités et contact." />
-  <meta name="theme-color" content="#ffffff" />
-  <link rel="icon" href="assets/favicon.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MJSC Judo Manosque</title>
+  <meta name="description" content="Club de judo à Manosque : cours enfants, ados, adultes, inscription, horaires et actualités.">
+  <link rel="icon" href="assets/logo-mjsc.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Accueil MJSC Judo">
+      <span class="logo-box"><img src="assets/logo-mjsc.png" alt="Logo MJSC Judo Manosque"></span>
+    </a>
+    <button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
     <nav class="nav" aria-label="Navigation principale">
-      <a class="brand" href="#top" aria-label="Accueil MJSC Judo">
-        <img class="brand-logo" src="assets/logo-mjsc.png" alt="Logo MJSC Judo Manosque" />
-        <span><strong>MJSC Judo</strong><small>Manosque</small></span>
-      </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="menu">☰</button>
-      <div class="menu" id="menu">
-        <a href="#club">Le club</a>
-        <a href="#cours">Cours</a>
-        <a href="#planning">Horaires</a>
-        <a href="#galerie">Galerie</a>
-        <a href="#inscription">Inscription</a>
-        <a href="#actualites">Actualités</a>
-        <a href="#contact" class="btn small">Contact</a>
-      </div>
+      <a href="#top" class="active">Accueil</a>
+      <a href="#club">Le club</a>
+      <a href="#horaires">Horaires</a>
+      <a href="#inscription">Inscription</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#actualites">Actualités</a>
+      <a href="#contact">Contact</a>
     </nav>
-
-    <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">Judo • Respect • Progression • Convivialité</p>
-        <h1>MJSC Judo Manosque</h1>
-        <p class="lead">Un club ouvert à tous pour découvrir, progresser et pratiquer le judo dans une ambiance sérieuse, éducative et familiale.</p>
-        <div class="actions">
-          <a class="btn" href="#inscription">S’inscrire / essai gratuit</a>
-          <a class="btn ghost" href="#planning">Voir les horaires</a>
-        </div>
-      </div>
-      <div class="hero-logo-card">
-        <img src="assets/logo-mjsc.png" alt="Logo MJSC Judo Manosque" />
-      </div>
-    </section>
+    <a class="btn btn-red header-cta" href="#inscription">Essai gratuit</a>
   </header>
 
   <main>
-    <section class="section quick-info" aria-label="Informations rapides">
-      <article><strong>📍 Lieu</strong><span id="quickAddress">Lycée des Iscles, Manosque</span></article>
-      <article><strong>🥋 Public</strong><span>Enfants, ados, adultes</span></article>
-      <article><strong>📄 Inscription</strong><span>Formulaire en ligne + documents Drive</span></article>
-    </section>
-
-    <section class="section split" id="club">
-      <div>
-        <p class="eyebrow">Notre mission</p>
-        <h2>Former des judokas, mais surtout des personnes équilibrées.</h2>
-      </div>
-      <div class="text-block">
-        <p>Le club a pour mission de rendre le judo accessible à tous, de transmettre ses valeurs éducatives et de favoriser le développement physique, mental et social de chaque pratiquant.</p>
-        <p>Au-delà de la performance sportive, le MJSC Judo met en avant le respect, la discipline, la confiance en soi, la persévérance et l’entraide.</p>
-      </div>
-    </section>
-
-    <section class="section values">
-      <article><h3>Respect</h3><p>Saluer, écouter, progresser ensemble.</p></article>
-      <article><h3>Maîtrise</h3><p>Contrôler son corps et ses émotions.</p></article>
-      <article><h3>Progression</h3><p>Avancer à son rythme, du débutant au compétiteur.</p></article>
-      <article><h3>Entraide</h3><p>Grandir avec les autres sur et hors du tatami.</p></article>
-    </section>
-
-    <section class="section" id="cours">
-      <div class="section-heading">
-        <p class="eyebrow">Cours</p>
-        <h2>Des séances pour chaque âge et chaque objectif.</h2>
-      </div>
-      <div class="cards">
-        <article class="card"><h3>Baby judo</h3><p>Motricité, jeux d’opposition, premiers repères et respect des règles.</p><strong>4–6 ans</strong></article>
-        <article class="card"><h3>Enfants</h3><p>Technique, coordination, confiance, premières ceintures et plaisir de pratiquer.</p><strong>7–11 ans</strong></article>
-        <article class="card"><h3>Ados</h3><p>Renforcement, technique, randori, préparation aux passages de grades.</p><strong>12–17 ans</strong></article>
-        <article class="card"><h3>Adultes</h3><p>Judo loisir, remise en forme, perfectionnement et accompagnement compétition.</p><strong>18 ans et +</strong></article>
-      </div>
-    </section>
-
-    <section class="section calendar" id="planning">
-      <div class="section-heading">
-        <p class="eyebrow">Planning</p>
-        <h2>Horaires et événements</h2>
-        <p>Les horaires importants restent visibles sur ordinateur et téléphone. Le calendrier Google peut être connecté dans <code>config.js</code>.</p>
-      </div>
-      <div class="planning-grid">
-        <div class="schedule-card">
-          <h3>Horaires des cours</h3>
-          <div class="schedule-table" id="scheduleTable">
-            <div><strong>À compléter</strong><span>Modifie les horaires dans config.js</span></div>
-          </div>
+    <section class="hero" aria-label="Présentation">
+      <button class="hero-arrow prev" aria-label="Image précédente">‹</button>
+      <div class="hero-slide is-active" style="background-image:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.35)),url('assets/gallery/photo-1.jpg')"></div>
+      <div class="hero-slide" style="background-image:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.35)),url('assets/gallery/photo-2.jpg')"></div>
+      <div class="hero-slide" style="background-image:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.35)),url('assets/gallery/photo-3.jpg')"></div>
+      <div class="hero-content container">
+        <p class="red-label">Manosque Judo Sports et Culture</p>
+        <h1>Plus qu’un sport,<br>une école de vie</h1>
+        <p class="hero-text">Respect, courage, sincérité, honneur, modestie, politesse, contrôle de soi et amitié.</p>
+        <div class="hero-actions">
+          <a class="btn btn-red" href="#horaires">Nos horaires</a>
+          <a class="btn btn-outline" href="#inscription">Essai gratuit</a>
         </div>
-        <div class="embed-box compact" id="calendarEmbed"></div>
+      </div>
+      <button class="hero-arrow next" aria-label="Image suivante">›</button>
+      <div class="dots" aria-hidden="true"></div>
+    </section>
+
+    <section class="photo-strip" id="galerie" aria-label="Galerie photos">
+      <button class="strip-arrow strip-prev" aria-label="Précédent">‹</button>
+      <div class="strip-track">
+        <img src="assets/gallery/photo-1.jpg" alt="Cours de judo">
+        <img src="assets/gallery/photo-2.jpg" alt="Entraînement de judo">
+        <img src="assets/gallery/photo-3.jpg" alt="Compétition de judo">
+        <img src="assets/gallery/photo-4.jpg" alt="Groupe du club">
+        <img src="assets/gallery/photo-5.jpg" alt="Esprit du club">
+      </div>
+      <button class="strip-arrow strip-next" aria-label="Suivant">›</button>
+    </section>
+
+    <section class="container intro" id="club">
+      <div class="intro-text">
+        <p class="section-kicker">Bienvenue au</p>
+        <h2>MJSC Judo Manosque</h2>
+        <p>Notre club accueille les enfants, les adolescents et les adultes dans une ambiance conviviale et familiale.</p>
+        <p>Nous transmettons les valeurs du judo à travers le plaisir, le partage et le dépassement de soi.</p>
+        <a href="#contact" class="btn btn-dark">Découvrir le club</a>
+      </div>
+      <div class="features">
+        <article><span>👥</span><h3>Pour tous</h3><p>De 4 ans à adultes</p></article>
+        <article><span>🥋</span><h3>Professeurs diplômés</h3><p>Encadrement de qualité</p></article>
+        <article><span>🏅</span><h3>Compétitions</h3><p>Entraînements et tournois</p></article>
+        <article><span>🤝</span><h3>Valeurs</h3><p>Respect, entraide, courage</p></article>
       </div>
     </section>
 
-    <section class="section gallery" id="galerie">
-      <div class="section-heading">
-        <p class="eyebrow">Galerie</p>
-        <h2>Photos du club</h2>
-        <p>Ajoute tes photos dans le dossier <code>assets</code>, puis indique leurs chemins dans <code>config.js</code>.</p>
+    <section class="container schedule-grid" id="horaires">
+      <div>
+        <h2><span>Horaires</span> des cours</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Jour</th><th>Horaires</th><th>Catégorie</th><th>Années</th><th>Professeur</th></tr></thead>
+            <tbody id="horairesBody"></tbody>
+          </table>
+        </div>
+        <a href="#planning" class="btn btn-outline-dark center-btn">Voir le calendrier</a>
       </div>
-      <div class="carousel" aria-label="Carrousel photos du club">
-        <button class="carousel-btn prev" type="button" aria-label="Photo précédente">‹</button>
-        <div class="carousel-track" id="carouselTrack"></div>
-        <button class="carousel-btn next" type="button" aria-label="Photo suivante">›</button>
-        <div class="carousel-dots" id="carouselDots"></div>
+      <aside class="signup-card">
+        <h3>Inscription & documents</h3>
+        <p>Remplissez le formulaire d’inscription en ligne ou téléchargez le dossier d’inscription.</p>
+        <a id="formButton" class="btn btn-red" href="#inscription">Formulaire d’inscription</a>
+        <a id="driveButton" class="btn btn-outline" target="_blank" rel="noopener">Dossier d’inscription<br><small>Google Drive</small></a>
+      </aside>
+    </section>
+
+    <section class="benefits">
+      <div class="container benefit-grid">
+        <article>🥋 <strong>Essai gratuit</strong><span>Venez essayer 2 cours gratuitement</span></article>
+        <article>🏟️ <strong>Dojo équipé</strong><span>Un dojo moderne et sécurisé</span></article>
+        <article>🇫🇷 <strong>Club affilié FFJDA</strong><span>Fédération Française de Judo</span></article>
+        <article>👨‍👩‍👧‍👦 <strong>Esprit familial</strong><span>Ambiance conviviale et respectueuse</span></article>
       </div>
     </section>
 
-    <section class="section" id="inscription">
-      <div class="section-heading">
-        <p class="eyebrow">Inscriptions</p>
-        <h2>Demande d’essai ou inscription</h2>
-        <p>Le formulaire Google peut envoyer les réponses directement dans Google Sheets / Drive.</p>
-      </div>
+    <section class="container embed-section" id="planning">
+      <h2><span>Planning</span> & événements</h2>
+      <div class="embed-card"><iframe id="calendarFrame" title="Calendrier du club" loading="lazy"></iframe></div>
+    </section>
+
+    <section class="container embed-section" id="inscription">
+      <h2><span>Demande d’essai</span> ou inscription</h2>
+      <p class="muted">Le formulaire Google envoie les réponses directement dans Google Sheets / Drive.</p>
       <div class="form-grid">
-        <div class="info-panel">
+        <div class="doc-card">
           <h3>Documents utiles</h3>
           <ul>
             <li>Nom, prénom et date de naissance</li>
             <li>Responsable légal pour les mineurs</li>
-            <li>Certificat médical ou questionnaire santé selon cas</li>
+            <li>Certificat médical ou questionnaire santé selon le cas</li>
             <li>Autorisation photo / contact</li>
           </ul>
-          <div class="stack">
-            <a class="btn" id="driveFolderLink" href="#" target="_blank" rel="noopener">📂 Ouvrir le dossier Drive</a>
-            <a class="btn ghost" id="formDirectLink" href="#" target="_blank" rel="noopener">Ouvrir le formulaire en plein écran</a>
-          </div>
+          <a id="driveButton2" class="btn btn-dark" target="_blank" rel="noopener">Ouvrir le Drive</a>
         </div>
-        <div class="embed-box tall" id="formEmbed"></div>
+        <div class="embed-card form-card"><iframe id="formFrame" title="Formulaire d’inscription" loading="lazy"></iframe></div>
       </div>
     </section>
 
-    <section class="section social" id="actualites">
-      <div class="section-heading">
-        <p class="eyebrow">Actualités</p>
-        <h2>La vie du club</h2>
-      </div>
+    <section class="container social" id="actualites">
+      <h2><span>La vie</span> du club</h2>
       <div class="social-grid">
-        <article class="social-card"><h3>Facebook</h3><p>Retrouve les publications et informations du club.</p><a id="facebookLink" class="btn small" href="#" target="_blank" rel="noopener">Ouvrir Facebook</a></article>
-        <article class="social-card"><h3>Instagram</h3><p>Photos, stages, compétitions et moments du club.</p><a id="instagramLink" class="btn small" href="#" target="_blank" rel="noopener">Ouvrir Instagram</a></article>
-        <article class="social-card video"><h3>YouTube</h3><div class="video-frame" id="youtubeEmbed"></div></article>
-      </div>
-    </section>
-
-    <section class="section contact" id="contact">
-      <div>
-        <p class="eyebrow">Contact</p>
-        <h2>Une question ? Viens nous rencontrer.</h2>
-        <p>Contacte le club ou passe directement au dojo pendant les horaires d’ouverture.</p>
-      </div>
-      <div class="contact-card">
-        <p><strong>Lieu :</strong> <span id="clubAddress">Dojo à Manosque</span></p>
-        <p><strong>Email :</strong> <a id="clubEmail" href="mailto:contact@example.com">contact@example.com</a></p>
-        <p><strong>Téléphone :</strong> <a id="clubPhone" href="tel:+33000000000">00 00 00 00 00</a></p>
-        <div class="actions"><a class="btn" href="#inscription">Faire une demande</a><a class="btn ghost" id="mapsLink" href="#" target="_blank" rel="noopener">Google Maps</a></div>
+        <article><h3>Facebook</h3><p>Suivez les informations du club.</p><a id="facebookLink" class="btn btn-red" target="_blank" rel="noopener">Ouvrir Facebook</a></article>
+        <article><h3>Instagram</h3><p>Photos, stories et actualités.</p><a id="instagramLink" class="btn btn-red" target="_blank" rel="noopener">Ouvrir Instagram</a></article>
+        <article class="video-card"><h3>YouTube</h3><div id="youtubeEmbed" class="youtube-placeholder">▶</div><a id="youtubeLink" class="btn btn-outline-dark" target="_blank" rel="noopener">Ouvrir YouTube</a></article>
       </div>
     </section>
   </main>
 
-  <button id="backToTop" class="back-to-top" type="button" aria-label="Retour en haut">↑</button>
-
-  <footer class="footer">
-    <div class="footer-brand"><img src="assets/logo-mjsc.png" alt="Logo MJSC Judo Manosque" /><p>© <span id="year"></span> MJSC Judo Manosque — Site associatif.</p></div>
-    <a href="#top">Retour en haut</a>
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div><img src="assets/logo-mjsc.png" alt="Logo MJSC" class="footer-logo"><p>MJSC Judo Manosque<br><span id="clubAddress">Lycée des Iscles, Manosque</span></p><p>✉ <a id="clubEmail" href="#">contact@mjsc-judo.fr</a><br>☎ <a id="clubPhone" href="#">00 00 00 00 00</a></p></div>
+      <div><h3>Nous suivre</h3><p><a id="footerFacebook" target="_blank" rel="noopener">Facebook</a></p><p><a id="footerInstagram" target="_blank" rel="noopener">Instagram</a></p><p><a id="footerYoutube" target="_blank" rel="noopener">YouTube</a></p></div>
+      <div><h3>Plan d’accès</h3><a id="mapsLink" class="map-box" target="_blank" rel="noopener">📍 Dojo MJSC Judo<br>Lycée des Iscles, Manosque</a></div>
+      <div><h3>Liens utiles</h3><p>Fédération Française de Judo</p><p>Ligue PACA Judo</p><p>Ville de Manosque</p></div>
+    </div>
+    <p class="copyright">© <span id="year"></span> MJSC Judo Manosque - Tous droits réservés</p>
   </footer>
 
+  <button class="to-top" aria-label="Retour en haut">↑</button>
   <script src="config.js"></script>
   <script src="app.js"></script>
 </body>

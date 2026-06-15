@@ -1,83 +1,59 @@
-const cfg = window.MJSC_CONFIG || {};
-const $ = (id) => document.getElementById(id);
+const C = window.MJSC_CONFIG || {};
+const $ = (s) => document.querySelector(s);
+const all = (s) => [...document.querySelectorAll(s)];
 
-if ($("year")) $("year").textContent = new Date().getFullYear();
+function setText(id, value){ const el = document.getElementById(id); if(el && value) el.textContent = value; }
+function setHref(id, value){ const el = document.getElementById(id); if(el && value) el.href = value; }
+function telHref(phone){ return 'tel:' + String(phone || '').replace(/\s+/g,''); }
 
-const navToggle = document.querySelector(".nav-toggle");
-const menu = document.querySelector(".menu");
-navToggle?.addEventListener("click", () => {
-  const open = menu.classList.toggle("open");
-  navToggle.setAttribute("aria-expanded", String(open));
+setText('clubAddress', C.address);
+setText('clubEmail', C.email);
+setText('clubPhone', C.phone);
+setHref('clubEmail', 'mailto:' + C.email);
+setHref('clubPhone', telHref(C.phone));
+setHref('mapsLink', C.googleMapsUrl);
+setHref('driveButton', C.googleDriveFolderUrl);
+setHref('driveButton2', C.googleDriveFolderUrl);
+setHref('facebookLink', C.facebookUrl);
+setHref('instagramLink', C.instagramUrl);
+setHref('youtubeLink', C.youtubeUrl);
+setHref('footerFacebook', C.facebookUrl);
+setHref('footerInstagram', C.instagramUrl);
+setHref('footerYoutube', C.youtubeUrl);
+$('#year').textContent = new Date().getFullYear();
+
+if(C.googleCalendarEmbedUrl) $('#calendarFrame').src = C.googleCalendarEmbedUrl;
+if(C.googleFormEmbedUrl){ $('#formFrame').src = C.googleFormEmbedUrl; $('#formButton').href = '#inscription'; }
+
+const body = $('#horairesBody');
+(C.horaires || []).forEach(row => {
+  const tr = document.createElement('tr');
+  row.forEach(cell => { const td = document.createElement('td'); td.textContent = cell; tr.appendChild(td); });
+  body.appendChild(tr);
 });
-document.querySelectorAll(".menu a").forEach(a => a.addEventListener("click", () => menu.classList.remove("open")));
 
-const backToTop = $("backToTop");
-window.addEventListener("scroll", () => backToTop?.classList.toggle("show", window.scrollY > 500));
-backToTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-function safeSetLink(id, href, text){
-  const el = $(id); if(!el || !href) return;
-  el.href = href; if(text) el.textContent = text;
-}
-function makeIframe(id, src, title){
-  const el = $(id); if(!el) return;
-  if(!src){ el.innerHTML = `<div class="placeholder"><h3>À connecter</h3><p>Ajoute le lien dans <strong>config.js</strong>.</p></div>`; return; }
-  el.innerHTML = `<iframe title="${title}" loading="lazy" src="${src}"></iframe>`;
+if(C.youtubeVideoId){
+  $('#youtubeEmbed').innerHTML = `<iframe title="Vidéo YouTube" width="100%" height="230" src="https://www.youtube.com/embed/${C.youtubeVideoId}" allowfullscreen></iframe>`;
 }
 
-if ($("clubAddress")) $("clubAddress").textContent = cfg.address || "Dojo à Manosque";
-if ($("quickAddress")) $("quickAddress").textContent = cfg.address || "Dojo à Manosque";
-safeSetLink("clubEmail", cfg.email ? `mailto:${cfg.email}` : "", cfg.email);
-safeSetLink("clubPhone", cfg.phone ? `tel:${cfg.phone.replace(/\s/g,"")}` : "", cfg.phone?.replace("+33", "0"));
-safeSetLink("mapsLink", cfg.googleMapsUrl);
-safeSetLink("driveFolderLink", cfg.googleDriveFolderUrl);
-safeSetLink("facebookLink", cfg.facebookUrl);
-safeSetLink("instagramLink", cfg.instagramUrl);
+const nav = $('.nav');
+$('.menu-toggle').addEventListener('click', () => nav.classList.toggle('open'));
+all('.nav a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
-const formUrl = cfg.googleFormEmbedUrl || "";
-makeIframe("calendarEmbed", cfg.googleCalendarEmbedUrl, "Calendrier du club");
-makeIframe("formEmbed", formUrl, "Formulaire d'inscription");
-safeSetLink("formDirectLink", formUrl.replace("?embedded=true", "?usp=dialog"));
+const slides = all('.hero-slide');
+const dots = $('.dots');
+let current = 0;
+slides.forEach((_,i)=>{ const b=document.createElement('button'); b.addEventListener('click',()=>show(i)); dots.appendChild(b); });
+function show(i){ slides[current].classList.remove('is-active'); dots.children[current].classList.remove('is-active'); current=(i+slides.length)%slides.length; slides[current].classList.add('is-active'); dots.children[current].classList.add('is-active'); }
+show(0);
+$('.hero-arrow.prev').addEventListener('click',()=>show(current-1));
+$('.hero-arrow.next').addEventListener('click',()=>show(current+1));
+setInterval(()=>show(current+1),5000);
 
-if ($("youtubeEmbed")) {
-  $("youtubeEmbed").innerHTML = `<iframe title="Vidéo YouTube du club" loading="lazy" allowfullscreen src="https://www.youtube.com/embed/${cfg.youtubeVideoId || "dQw4w9WgXcQ"}?rel=0"></iframe>`;
-}
+const track = $('.strip-track');
+$('.strip-prev').addEventListener('click',()=> track.scrollBy({left:-260,behavior:'smooth'}));
+$('.strip-next').addEventListener('click',()=> track.scrollBy({left:260,behavior:'smooth'}));
 
-function renderSchedule(){
-  const el = $("scheduleTable"); if(!el) return;
-  const items = Array.isArray(cfg.schedule) ? cfg.schedule : [];
-  if(!items.length) return;
-  el.innerHTML = items.map(item => `<div><strong>${item.day || "Jour"}</strong><span>${item.time || "Horaire"} — ${item.group || "Groupe"}</span></div>`).join("");
-}
-renderSchedule();
-
-function renderCarousel(){
-  const track = $("carouselTrack");
-  const dots = $("carouselDots");
-  if(!track || !dots) return;
-  const fallback = [
-    { title: "Entraînements", text: "Ajoute ici une photo des cours du club.", src: "" },
-    { title: "Compétitions", text: "Mets une photo de tournoi ou remise de ceintures.", src: "" },
-    { title: "Vie du club", text: "Stages, événements, moments conviviaux.", src: "" }
-  ];
-  const slides = Array.isArray(cfg.carouselImages) && cfg.carouselImages.length ? cfg.carouselImages : fallback;
-  let current = 0;
-  track.innerHTML = slides.map((s, i) => `
-    <article class="slide ${i === 0 ? "active" : ""}">
-      ${s.src ? `<img src="${s.src}" alt="${s.alt || s.title || 'Photo du club'}" loading="lazy">` : ""}
-      <div class="slide-content"><h3>${s.title || "Photo du club"}</h3><p>${s.text || ""}</p></div>
-    </article>`).join("");
-  dots.innerHTML = slides.map((_, i) => `<button type="button" aria-label="Afficher la photo ${i+1}" class="${i === 0 ? "active" : ""}"></button>`).join("");
-  const slideEls = Array.from(track.querySelectorAll(".slide"));
-  const dotEls = Array.from(dots.querySelectorAll("button"));
-  function go(index){
-    current = (index + slides.length) % slides.length;
-    slideEls.forEach((s, i) => s.classList.toggle("active", i === current));
-    dotEls.forEach((d, i) => d.classList.toggle("active", i === current));
-  }
-  document.querySelector(".carousel-btn.prev")?.addEventListener("click", () => go(current - 1));
-  document.querySelector(".carousel-btn.next")?.addEventListener("click", () => go(current + 1));
-  dotEls.forEach((d, i) => d.addEventListener("click", () => go(i)));
-  setInterval(() => go(current + 1), 5000);
-}
-renderCarousel();
+const topBtn = $('.to-top');
+window.addEventListener('scroll',()=> topBtn.classList.toggle('show', window.scrollY > 550));
+topBtn.addEventListener('click',()=> window.scrollTo({top:0,behavior:'smooth'}));

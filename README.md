@@ -1,32 +1,17 @@
-# MJSC Judo Manosque — Site Cloudflare Pages
+# Site MJSC Judo Manosque
 
-## Nouveautés de cette version
-- Logo MJSC intégré dans le menu, la bannière, le footer et le favicon.
-- Menu fixe qui reste visible quand on descend dans la page.
-- Bouton retour en haut en bas à droite.
-- Carrousel photo automatique avec flèches.
-- Version ordinateur mieux équilibrée.
-- Google Drive ouvert par bouton, pas en iframe, car Drive bloque souvent l'intégration.
+Site statique prêt pour Cloudflare Pages.
 
-## Modifier les liens
-Tout se change dans `config.js` :
-- Google Form
-- Google Drive
-- Google Calendar
-- Facebook / Instagram / YouTube
-- horaires
-- photos du carrousel
+## Modifier les infos
+Ouvre `config.js` et change : email, téléphone, liens Facebook/Instagram/YouTube, Google Forms, Google Drive, horaires.
 
-## Ajouter des photos au carrousel
-1. Mets tes images dans le dossier `assets`.
-2. Dans `config.js`, modifie :
+## Ajouter des vraies photos
+Remplace les images dans `assets/gallery/` par tes photos en gardant les noms :
+- photo-1.jpg
+- photo-2.jpg
+- photo-3.jpg
+- photo-4.jpg
+- photo-5.jpg
 
-```js
-carouselImages: [
-  { src: "assets/photo1.jpg", title: "Entraînement", text: "Cours enfants" },
-  { src: "assets/photo2.jpg", title: "Compétition", text: "Tournoi" }
-]
-```
-
-## Déploiement GitHub + Cloudflare
-Remplace les fichiers sur GitHub, clique `Commit changes`, puis redéploie dans Cloudflare Pages.
+## Déployer
+Upload tous les fichiers sur GitHub ou Cloudflare Pages : `index.html`, `styles.css`, `app.js`, `config.js`, `assets/`.
