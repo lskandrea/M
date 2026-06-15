@@ -1,51 +1,36 @@
 const cfg = window.MJSC_CONFIG || {};
 const $ = (s) => document.querySelector(s);
-const photos = cfg.photos || [];
+const $$ = (s) => [...document.querySelectorAll(s)];
 
+function setAttr(id, attr, value){ const el = document.getElementById(id); if(el && value) el.setAttribute(attr, value); }
 function setText(id, value){ const el = document.getElementById(id); if(el && value) el.textContent = value; }
-function setHref(id, value){ const el = document.getElementById(id); if(el && value) el.href = value; }
 
-setText('addressShort', cfg.address);
-setText('addressFull', cfg.address);
-setText('phoneText', cfg.phone);
-setText('emailText', cfg.email);
-setHref('mapHero', cfg.googleMapsUrl);
-setHref('mapContact', cfg.googleMapsUrl);
-setHref('driveBtn', cfg.googleDriveFolderUrl);
-setHref('driveQuick', cfg.googleDriveFolderUrl);
-setHref('facebookLink', cfg.facebookUrl);
-setHref('instagramLink', cfg.instagramUrl);
-setHref('youtubeLink', cfg.youtubeUrl);
-setText('year', new Date().getFullYear());
+setText('clubAddress', cfg.address);
+const email = $('#clubEmail'); if(email){ email.textContent = cfg.email; email.href = `mailto:${cfg.email}`; }
+const phone = $('#clubPhone'); if(phone){ phone.textContent = cfg.phone; phone.href = `tel:${(cfg.phone||'').replaceAll(' ','')}`; }
+setAttr('formBtn','href',cfg.googleFormEmbedUrl?.replace('embedded=true','usp=dialog') || cfg.googleFormEmbedUrl);
+setAttr('driveBtn','href',cfg.googleDriveFolderUrl);
+setAttr('driveBtn2','href',cfg.googleDriveFolderUrl);
+setAttr('formFrame','src',cfg.googleFormEmbedUrl);
+setAttr('facebookLink','href',cfg.facebookUrl);
+setAttr('instagramLink','href',cfg.instagramUrl);
+setAttr('youtubeLink','href',cfg.youtubeUrl);
+setAttr('mapsLink','href',cfg.googleMapsUrl);
+setAttr('mapFrame','src',`https://www.google.com/maps?q=${encodeURIComponent(cfg.address || 'Lycée des Iscles Manosque')}&output=embed`);
 
-if ($('#formFrame')) $('#formFrame').src = cfg.googleFormEmbedUrl || '';
-if ($('#calendarFrame')) $('#calendarFrame').src = cfg.googleCalendarEmbedUrl || '';
-if ($('#heroBg') && photos[0]) $('#heroBg').style.backgroundImage = `url('${photos[0]}')`;
-if ($('#clubPhoto') && photos[1]) $('#clubPhoto').src = photos[1];
+const slides = $$('.hero-slide'); const dots = $$('.dots span'); let idx = 0;
+function showSlide(n){ idx = (n + slides.length) % slides.length; slides.forEach((s,i)=>s.classList.toggle('active', i===idx)); dots.forEach((d,i)=>d.classList.toggle('on', i===idx)); }
+$('.next')?.addEventListener('click',()=>showSlide(idx+1)); $('.prev')?.addEventListener('click',()=>showSlide(idx-1));
+setInterval(()=>showSlide(idx+1), 5200);
 
-const track = $('#carouselTrack');
-let slideIndex = 0;
-if (track) {
-  photos.forEach((src, i) => {
-    const slide = document.createElement('div');
-    slide.className = 'slide';
-    slide.innerHTML = `<img src="${src}" alt="Photo judo ${i+1}"><div class="slide-caption">MJSC Judo Manosque</div>`;
-    track.appendChild(slide);
-  });
-}
-function showSlide(i){
-  if (!track || !photos.length) return;
-  slideIndex = (i + photos.length) % photos.length;
-  track.style.transform = `translateX(-${slideIndex * 100}%)`;
-  if ($('#heroBg')) $('#heroBg').style.backgroundImage = `url('${photos[slideIndex]}')`;
-}
-$('.prev')?.addEventListener('click', () => showSlide(slideIndex - 1));
-$('.next')?.addEventListener('click', () => showSlide(slideIndex + 1));
-setInterval(() => showSlide(slideIndex + 1), 5200);
+const track = $('.strip-track');
+$('.strip-btn.right')?.addEventListener('click',()=>track.scrollBy({left:260,behavior:'smooth'}));
+$('.strip-btn.left')?.addEventListener('click',()=>track.scrollBy({left:-260,behavior:'smooth'}));
 
-$('.menu-toggle')?.addEventListener('click', () => $('.main-nav')?.classList.toggle('open'));
-document.querySelectorAll('.main-nav a').forEach(a => a.addEventListener('click', () => $('.main-nav')?.classList.remove('open')));
+const burger = $('.burger'); const nav = $('.nav');
+burger?.addEventListener('click',()=>nav.classList.toggle('open'));
+$$('.nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 
-const backTop = $('.back-top');
-window.addEventListener('scroll', () => backTop?.classList.toggle('visible', window.scrollY > 500));
-backTop?.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+const back = $('.backtop');
+window.addEventListener('scroll',()=>back.classList.toggle('show', window.scrollY > 500));
+back?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));

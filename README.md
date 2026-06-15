@@ -1,15 +1,13 @@
-# MJSC Judo Manosque — Site V5
+# MJSC Judo Manosque — V6
 
-Version corrigée : logo local, pas d'emojis, icônes CSS, carrousel avec images temporaires, menu fixe et bouton retour en haut.
+Version corrigée :
+- logo fourni intégré dans `assets/logo-mjsc.png`
+- favicon créé depuis le logo
+- emojis supprimés
+- icônes Font Awesome
+- images temporaires avec recherche judo uniquement
+- Drive en bouton
+- Google Forms intégré
+- menu fixe + retour en haut
 
-## Modifier les liens
-Ouvre `config.js`, puis remplace :
-- `phone`
-- `email`
-- `facebookUrl`
-- `instagramUrl`
-- `youtubeUrl`
-- `photos`
-
-## Déployer sur Cloudflare Pages
-Upload tout le contenu du dossier ou connecte le dépôt GitHub.
+Pour modifier les liens : édite `config.js`.
