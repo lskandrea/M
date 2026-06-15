@@ -1,59 +1,51 @@
-const C = window.MJSC_CONFIG || {};
+const cfg = window.MJSC_CONFIG || {};
 const $ = (s) => document.querySelector(s);
-const all = (s) => [...document.querySelectorAll(s)];
+const photos = cfg.photos || [];
 
 function setText(id, value){ const el = document.getElementById(id); if(el && value) el.textContent = value; }
 function setHref(id, value){ const el = document.getElementById(id); if(el && value) el.href = value; }
-function telHref(phone){ return 'tel:' + String(phone || '').replace(/\s+/g,''); }
 
-setText('clubAddress', C.address);
-setText('clubEmail', C.email);
-setText('clubPhone', C.phone);
-setHref('clubEmail', 'mailto:' + C.email);
-setHref('clubPhone', telHref(C.phone));
-setHref('mapsLink', C.googleMapsUrl);
-setHref('driveButton', C.googleDriveFolderUrl);
-setHref('driveButton2', C.googleDriveFolderUrl);
-setHref('facebookLink', C.facebookUrl);
-setHref('instagramLink', C.instagramUrl);
-setHref('youtubeLink', C.youtubeUrl);
-setHref('footerFacebook', C.facebookUrl);
-setHref('footerInstagram', C.instagramUrl);
-setHref('footerYoutube', C.youtubeUrl);
-$('#year').textContent = new Date().getFullYear();
+setText('addressShort', cfg.address);
+setText('addressFull', cfg.address);
+setText('phoneText', cfg.phone);
+setText('emailText', cfg.email);
+setHref('mapHero', cfg.googleMapsUrl);
+setHref('mapContact', cfg.googleMapsUrl);
+setHref('driveBtn', cfg.googleDriveFolderUrl);
+setHref('driveQuick', cfg.googleDriveFolderUrl);
+setHref('facebookLink', cfg.facebookUrl);
+setHref('instagramLink', cfg.instagramUrl);
+setHref('youtubeLink', cfg.youtubeUrl);
+setText('year', new Date().getFullYear());
 
-if(C.googleCalendarEmbedUrl) $('#calendarFrame').src = C.googleCalendarEmbedUrl;
-if(C.googleFormEmbedUrl){ $('#formFrame').src = C.googleFormEmbedUrl; $('#formButton').href = '#inscription'; }
+if ($('#formFrame')) $('#formFrame').src = cfg.googleFormEmbedUrl || '';
+if ($('#calendarFrame')) $('#calendarFrame').src = cfg.googleCalendarEmbedUrl || '';
+if ($('#heroBg') && photos[0]) $('#heroBg').style.backgroundImage = `url('${photos[0]}')`;
+if ($('#clubPhoto') && photos[1]) $('#clubPhoto').src = photos[1];
 
-const body = $('#horairesBody');
-(C.horaires || []).forEach(row => {
-  const tr = document.createElement('tr');
-  row.forEach(cell => { const td = document.createElement('td'); td.textContent = cell; tr.appendChild(td); });
-  body.appendChild(tr);
-});
-
-if(C.youtubeVideoId){
-  $('#youtubeEmbed').innerHTML = `<iframe title="Vidéo YouTube" width="100%" height="230" src="https://www.youtube.com/embed/${C.youtubeVideoId}" allowfullscreen></iframe>`;
+const track = $('#carouselTrack');
+let slideIndex = 0;
+if (track) {
+  photos.forEach((src, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'slide';
+    slide.innerHTML = `<img src="${src}" alt="Photo judo ${i+1}"><div class="slide-caption">MJSC Judo Manosque</div>`;
+    track.appendChild(slide);
+  });
 }
+function showSlide(i){
+  if (!track || !photos.length) return;
+  slideIndex = (i + photos.length) % photos.length;
+  track.style.transform = `translateX(-${slideIndex * 100}%)`;
+  if ($('#heroBg')) $('#heroBg').style.backgroundImage = `url('${photos[slideIndex]}')`;
+}
+$('.prev')?.addEventListener('click', () => showSlide(slideIndex - 1));
+$('.next')?.addEventListener('click', () => showSlide(slideIndex + 1));
+setInterval(() => showSlide(slideIndex + 1), 5200);
 
-const nav = $('.nav');
-$('.menu-toggle').addEventListener('click', () => nav.classList.toggle('open'));
-all('.nav a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+$('.menu-toggle')?.addEventListener('click', () => $('.main-nav')?.classList.toggle('open'));
+document.querySelectorAll('.main-nav a').forEach(a => a.addEventListener('click', () => $('.main-nav')?.classList.remove('open')));
 
-const slides = all('.hero-slide');
-const dots = $('.dots');
-let current = 0;
-slides.forEach((_,i)=>{ const b=document.createElement('button'); b.addEventListener('click',()=>show(i)); dots.appendChild(b); });
-function show(i){ slides[current].classList.remove('is-active'); dots.children[current].classList.remove('is-active'); current=(i+slides.length)%slides.length; slides[current].classList.add('is-active'); dots.children[current].classList.add('is-active'); }
-show(0);
-$('.hero-arrow.prev').addEventListener('click',()=>show(current-1));
-$('.hero-arrow.next').addEventListener('click',()=>show(current+1));
-setInterval(()=>show(current+1),5000);
-
-const track = $('.strip-track');
-$('.strip-prev').addEventListener('click',()=> track.scrollBy({left:-260,behavior:'smooth'}));
-$('.strip-next').addEventListener('click',()=> track.scrollBy({left:260,behavior:'smooth'}));
-
-const topBtn = $('.to-top');
-window.addEventListener('scroll',()=> topBtn.classList.toggle('show', window.scrollY > 550));
-topBtn.addEventListener('click',()=> window.scrollTo({top:0,behavior:'smooth'}));
+const backTop = $('.back-top');
+window.addEventListener('scroll', () => backTop?.classList.toggle('visible', window.scrollY > 500));
+backTop?.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));

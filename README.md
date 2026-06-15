@@ -1,17 +1,15 @@
-# Site MJSC Judo Manosque
+# MJSC Judo Manosque — Site V5
 
-Site statique prêt pour Cloudflare Pages.
+Version corrigée : logo local, pas d'emojis, icônes CSS, carrousel avec images temporaires, menu fixe et bouton retour en haut.
 
-## Modifier les infos
-Ouvre `config.js` et change : email, téléphone, liens Facebook/Instagram/YouTube, Google Forms, Google Drive, horaires.
+## Modifier les liens
+Ouvre `config.js`, puis remplace :
+- `phone`
+- `email`
+- `facebookUrl`
+- `instagramUrl`
+- `youtubeUrl`
+- `photos`
 
-## Ajouter des vraies photos
-Remplace les images dans `assets/gallery/` par tes photos en gardant les noms :
-- photo-1.jpg
-- photo-2.jpg
-- photo-3.jpg
-- photo-4.jpg
-- photo-5.jpg
-
-## Déployer
-Upload tous les fichiers sur GitHub ou Cloudflare Pages : `index.html`, `styles.css`, `app.js`, `config.js`, `assets/`.
+## Déployer sur Cloudflare Pages
+Upload tout le contenu du dossier ou connecte le dépôt GitHub.
