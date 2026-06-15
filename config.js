@@ -1,23 +1,40 @@
 // Remplace les valeurs ci-dessous par les vrais liens du club.
 window.MJSC_CONFIG = {
   clubName: "MJSC Judo Manosque",
-  address: "Lycée des iscles, Manosque",
+  address: "Lycée des Iscles, Manosque",
   email: "contact@mjsc-judo.fr",
-  phone: "+33400000000",
-  googleMapsUrl: "https://www.google.com/maps/place/Lyc%C3%A9e+Polyvalent+Les+Iscles/@43.8297843,5.7949508,17z/data=!3m1!4b1!4m6!3m5!1s0x12cbcdcc7292b373:0x821e658de074a450!8m2!3d43.8297843!4d5.7975311!16s%2Fg%2F1ypmn68cw?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D",
+  phone: "+33 7 82 97 65 59",
 
-  // Google Calendar : rends le calendrier public puis copie le lien d'intégration iframe.
+  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Lyc%C3%A9e%20des%20Iscles%20Manosque",
+
+  // Pour connecter le vrai calendrier : Google Calendar > Paramètres > Intégrer le calendrier > copier l'URL src de l'iframe.
   googleCalendarEmbedUrl: "https://calendar.google.com/calendar/embed?src=fr.french%23holiday%40group.v.calendar.google.com&ctz=Europe%2FParis",
 
-  // Google Forms : crée un formulaire puis colle ici l'URL /viewform?embedded=true
-  googleFormEmbedUrl: "https://docs.google.com/forms/d/e/1FAIpQLScWsSrNFTJjSfwFfQDwoCRDX1ryQ0OJIu_pEe0zPilvZBVaEA/viewform?usp=sharing&ouid=101478686819998394524",
+  // Google Forms : il faut bien finir par ?embedded=true
+  googleFormEmbedUrl: "https://docs.google.com/forms/d/e/1FAIpQLScWsSrNFTJjSfwFfQDwoCRDX1ryQ0OJIu_pEe0zPilvZBVaEA/viewform?embedded=true",
 
-  // Google Drive : dossier partagé pour documents d'inscription.
-  googleDriveFolderUrl: "https://drive.google.com/drive/folders/1xPzKkZ_tdigLaPH5XZI_ixVt4WO3Wf5f?usp=drive_link",
+  // Google Drive : le site l'ouvre avec un bouton, pas en iframe, pour éviter les erreurs Google Drive.
+  googleDriveFolderUrl: "https://drive.google.com/drive/folders/1xPzKkZ_tdigLaPH5XZI_ixVt4WO3Wf5f?usp=sharing",
 
   facebookUrl: "https://www.facebook.com/",
   instagramUrl: "https://www.instagram.com/",
 
-  // YouTube : mets l'ID d'une vidéo ou d'une playlist.
-  youtubeVideoId: "dQw4w9WgXcQ"
+  // YouTube : mets seulement l'ID d'une vidéo. Exemple : pour https://www.youtube.com/watch?v=ABC123, mets ABC123
+  youtubeVideoId: "dQw4w9WgXcQ",
+
+  // Horaires visibles sur le site. Modifie librement.
+  schedule: [
+    { day: "Lundi", time: "18h00 - 19h00", group: "Enfants" },
+    { day: "Lundi", time: "19h00 - 20h30", group: "Ados / adultes" },
+    { day: "Mercredi", time: "17h30 - 18h30", group: "Baby judo / enfants" },
+    { day: "Vendredi", time: "18h30 - 20h00", group: "Tous niveaux" }
+  ],
+
+  // Carrousel : ajoute tes photos dans assets, puis remplace les chemins ci-dessous.
+  // Exemple : src: "assets/entrainement.jpg"
+  carouselImages: [
+    { src: "", title: "Entraînements", text: "Ajoute une photo des entraînements du club." },
+    { src: "", title: "Compétitions", text: "Ajoute une photo de compétition ou remise de ceintures." },
+    { src: "", title: "Vie du club", text: "Ajoute une photo de stage, sortie ou événement du club." }
+  ]
 };

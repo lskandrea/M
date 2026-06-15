@@ -1,26 +1,32 @@
-# Site MJSC Judo Manosque — Cloudflare Pages
+# MJSC Judo Manosque — Site Cloudflare Pages
 
-## Déploiement rapide
-1. Mets le dossier sur GitHub.
-2. Va dans Cloudflare > Workers & Pages > Create application > Pages.
-3. Choisis ton dépôt GitHub.
-4. Build command : laisse vide.
-5. Output directory : `/`.
-6. Deploy.
+## Nouveautés de cette version
+- Logo MJSC intégré dans le menu, la bannière, le footer et le favicon.
+- Menu fixe qui reste visible quand on descend dans la page.
+- Bouton retour en haut en bas à droite.
+- Carrousel photo automatique avec flèches.
+- Version ordinateur mieux équilibrée.
+- Google Drive ouvert par bouton, pas en iframe, car Drive bloque souvent l'intégration.
 
-Cloudflare Pages peut déployer un site statique HTML/CSS/JS sans framework.
+## Modifier les liens
+Tout se change dans `config.js` :
+- Google Form
+- Google Drive
+- Google Calendar
+- Facebook / Instagram / YouTube
+- horaires
+- photos du carrousel
 
-## À modifier
-Tout se règle dans `config.js` :
-- email, téléphone, adresse
-- lien Google Maps
-- lien Google Calendar intégré
-- lien Google Forms intégré
-- lien dossier Google Drive
-- Facebook, Instagram, YouTube
+## Ajouter des photos au carrousel
+1. Mets tes images dans le dossier `assets`.
+2. Dans `config.js`, modifie :
 
-## Google Forms vers Drive
-Dans Google Forms : Réponses > icône Google Sheets. Les réponses seront stockées dans un fichier Sheets sur Google Drive.
+```js
+carouselImages: [
+  { src: "assets/photo1.jpg", title: "Entraînement", text: "Cours enfants" },
+  { src: "assets/photo2.jpg", title: "Compétition", text: "Tournoi" }
+]
+```
 
-## Google Calendar
-Rends le calendrier public ou partageable, puis récupère le code d'intégration iframe dans les paramètres du calendrier.
+## Déploiement GitHub + Cloudflare
+Remplace les fichiers sur GitHub, clique `Commit changes`, puis redéploie dans Cloudflare Pages.
