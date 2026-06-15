@@ -6,8 +6,8 @@ window.MJSC_CONFIG = {
   email: "À compléter",
 
   googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Lyc%C3%A9e%20des%20Iscles%20Manosque",
-  googleFormEmbedUrl: "https://docs.google.com/forms/d/e/1FAIpQLScWsSrNFTJjSfwFfQDwoCRDX1ryQ0OJIu_pEe0zPilvZBVaEA/viewform?embedded=true",
-  googleDriveFolderUrl: "https://drive.google.com/drive/folders/1xPzKkZ_tdigLaPH5XZI_ixVt4WO3Wf5f?usp=sharing",
+  googleFormEmbedUrl: "https://docs.google.com/forms/d/e/1FAIpQLScWsSrNFTJjSfwFfQDwoCRDX1ryQ0OJIu_pEe0zPilvZBVaEA/viewform?usp=sharing&ouid=101478686819998394524",
+  googleDriveFolderUrl: "https://drive.google.com/drive/folders/1xPzKkZ_tdigLaPH5XZI_ixVt4WO3Wf5f?usp=drive_link",
   googleCalendarEmbedUrl: "https://calendar.google.com/calendar/embed?src=fr.french%23holiday%40group.v.calendar.google.com&ctz=Europe%2FParis",
 
   facebookUrl: "#",
