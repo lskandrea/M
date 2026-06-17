@@ -1,6 +1,12 @@
-# MJSC Judo Manosque - V7 corrigée
+# MJSC Judo V8
 
-Version corrigée : logo intégré directement dans le HTML et images judo intégrées aussi.
-Aucun fichier image externe n'est nécessaire pour le logo/carrousel, donc plus d'images cassées.
+Corrections incluses :
+- Nom corrigé : Manosque Judo Sport de Combat
+- Logo intégré directement dans le HTML
+- Images réelles de judo via Wikimedia Commons
+- Google Drive en bouton
+- Google Forms intégré
+- Section RGPD + message cookies
+- Design PC responsive
 
-À uploader sur GitHub/Cloudflare : index.html, styles.css, app.js, config.js, README.md.
+À compléter plus tard : horaires réels, email, téléphone, mentions légales définitives.
